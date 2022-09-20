@@ -1,88 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:sig_sessions/api_service.dart';
+
+ApiService api = ApiService();
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
-    print(MediaQuery.of(context).size.width);
+    var theme = Theme.of(context);
+    print(theme.brightness);
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.black,
-            padding: const EdgeInsets.only(top: 30, left: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.red,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.red,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.red,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.red,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.red,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.black,
-            padding: const EdgeInsets.only(top: 30, left: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          ),
-          (Theme.of(context).brightness == Brightness.dark)
-              ? Text("Dark")
-              : Text("Light"),
-        ],
+      body: FutureBuilder(
+        future: api.sampleFuture(2),
+        builder: (context, rr) {
+          if (rr.hasData) {
+            return const Center(
+              child: Text("Hey I've waited sooo long"),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
