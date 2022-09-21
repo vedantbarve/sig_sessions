@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sig_sessions/alpha_vantage.dart';
 import 'homepage.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class RootWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.dark),
-      home: const AlphaView(),
+      home: const HomePage(),
     );
   }
 }
