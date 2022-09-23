@@ -1,35 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sig_sessions/second_page.dart';
+import 'package:sig_sessions/third_page.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class SecondPage extends StatelessWidget {
+  final String name;
+  const SecondPage({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(name),
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              "Screen 1",
+              "Screen 2",
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   CupertinoPageRoute(
                     builder: (_) {
-                      return const SecondPage(
-                        name: "Gappi",
-                      );
+                      return const ThirdPage();
                     },
                   ),
                 );
               },
-              child: const Text("Navigate to next page"),
+              child: Text("Naviagte to third page"),
             ),
           ],
         ),
